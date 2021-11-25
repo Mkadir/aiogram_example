@@ -1,2 +1,2 @@
 # aiogram_example
-Aiogram bo
+Aiogram bot
