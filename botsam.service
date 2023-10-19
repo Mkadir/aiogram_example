@@ -1,0 +1,14 @@
+[Unit]
+Description=Bot Serivce
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+WorkingDirectory=/root/samarkand24
+ExecStart=/root/samarkand24/venv/bin/python app.py
+
+[Install]
+WantedBy=multi-user.target

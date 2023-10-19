@@ -1,16 +1,11 @@
+from loader import bot, db, dp
 from aiogram import types
-from aiogram.dispatcher.filters.builtin import CommandStart
-from database.user_methods import add_user
-from loader import dp, db
+from aiogram.dispatcher import FSMContext
 
 
-@dp.message_handler(CommandStart())
-async def bot_start(message: types.Message):
-    await message.answer(f"Salom, {message.from_user.full_name}!")
-    new_user = add_user(
-        db=db, data={
-            'tg_id':message.from_user.id,
-            'name': message.from_user.full_name
-        }
+@dp.message_handler(state="*", commands=['start'])
+async def start_command(message: types.Message, state: FSMContext):
+    await message.answer(
+        text=f"Salom {message.from_user.full_name}"
     )
-    
+

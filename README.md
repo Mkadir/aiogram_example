@@ -1,7 +1,3 @@
-# Template for telegram bot - Aiogram
+# Samarkand24
 
 Install requirements - `pip install -r requirements.txt` 
-
-Create .env for credentials
-
-If you wanna improve template, feel free, pull request.
