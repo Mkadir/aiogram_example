@@ -29,7 +29,7 @@ app = FastAPI(
 
 app.mount("/images", StaticFiles(directory="images"), name='images')
 
-admin = Admin(engine, base_url='/not-admin', title="Sam Dashboard", auth_provider=UsernameAndPasswordProvider(),
+admin = Admin(engine, base_url='/not-admin', title="Dashboard", auth_provider=UsernameAndPasswordProvider(),
               middlewares=[Middleware(SessionMiddleware, secret_key=SECRET_KEY)])
 
 
