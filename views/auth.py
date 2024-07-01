@@ -2,22 +2,12 @@ from starlette.requests import Request
 from starlette.responses import Response
 from starlette_admin.auth import AdminUser, AuthProvider
 from starlette_admin.exceptions import FormValidationError, LoginFailed
-
+from data.config import auth_users
 users = {
     "general": {
-        "name": "Muhammadali",
+        "name": "Admin",
         "avatar": "admin.png",
         "roles": ["read", "create", "edit", "delete", "action_make_published"],
-    },
-    "bigbro": {
-        "name": "Big Bro",
-        "avatar": None, # user avatar is optional
-        "roles": ["read", "create", "edit", "action_make_published"],
-    },
-    "botadmins": {
-        "name": "Bot Admins",
-        "avatar": None, # user avatar is optional
-        "roles": ["read", "create", "edit", "action_make_published"],
     }
 }
 
@@ -27,19 +17,15 @@ class UsernameAndPasswordProvider(AuthProvider):
     This is only for demo purpose, it's not a better
     way to save and validate user credentials
     """
-    passwords = {
-        "general": "working1!Q",
-        "bigbro": "karshisecurity1!Q",
-        "botadmins": "bot123"
-    }
+    passwords = auth_users
 
     async def login(
-        self,
-        username: str,
-        password: str,
-        remember_me: bool,
-        request: Request,
-        response: Response,
+            self,
+            username: str,
+            password: str,
+            remember_me: bool,
+            request: Request,
+            response: Response,
     ) -> Response:
         if len(username) < 3:
             """Form data validation"""
@@ -72,10 +58,8 @@ class UsernameAndPasswordProvider(AuthProvider):
             pass
             # photo_url = request.url_for("static", path=user["avatar"])
         return AdminUser(username=user["name"],
-                         photo_url='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877'
-                                   '-60111.jpg?w=740&t=st=1692193263~exp=1692193863~hmac'
-                                   '=8d3de9364af0dccc51bf5b8a9988ee293332881bc6ef058e362f94440d0f0eef'
-                         )
+                         photo_url='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1692193263~exp=1692193863~hmac=8d3de9364af0dccc51bf5b8a9988ee293332881bc6ef058e362f94440d0f0eef'
+                                   '')
 
     async def logout(self, request: Request, response: Response) -> Response:
         request.session.clear()
