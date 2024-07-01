@@ -7,7 +7,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=root
-WorkingDirectory=/root/aiogram_example
-ExecStart=/root/aiogram_example/venv/bin/uvicorn main:app --host 0.0.0.0
+WorkingDirectory=/root/bot
+ExecStart=/root/bot/venv/bin/uvicorn main:app --host 0.0.0.0
 [Install]
 WantedBy=multi-user.target
